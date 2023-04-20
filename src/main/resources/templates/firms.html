@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+<th:block th:insert="nav.html"></th:block>
+
+<h3>List of firms</h3>
+<table class="table table-striped w-auto">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+    <tbody>
+    <tr th:each="firm: ${firms}">
+        <td th:utext="${firm.id}"></td>
+        <td th:utext="${firm.name}"></td>
+        <td>
+            <a href="#" style="display: inline;" data-mdb-toggle="modal"
+               data-mdb-target="#delete">Delete</a>
+            &nbsp
+            <a th:href="@{/firm_update(id=${firm.id})}">Edit</a>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+<a href="/firm_add">Create firm</a>
+
+<div class="modal" tabindex="-1" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Are you sure?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure?</p>
+            </div>
+            <div class="modal-footer">
+                <!-- <form th:action="@{/firm_delete(id=${firm.id})}" th:method="delete"> -->
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="this.closest('form').submit();return false;">
+                    Delete
+                </button>
+                <!--  </form>  -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
+
+</body>
+</html>

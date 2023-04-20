@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartphone</title>
+    <link rel="stylesheet"  th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet"  th:href="@{/css/style.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div class="container mt-5">
+    <h3>Edit smartphone</h3>
+    <form th:method="PUT" th:action="@{/smart_update}" th:object = "${smart}">
+        <div class="mb-3">
+            <input type="text" id="id" th:field="*{id}" hidden>
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}">
+
+            <label for="firm" class="form-label">Firm</label>
+            <select class="form-select" aria-label="Firm" id="firm" name="firm">
+                <option th:utext="*{firm.name}" th:value="*{firm.id}"></option>
+                <th:block th:each="firm: ${firms}">
+                    <option th:utext="${firm.name}" th:value="${firm.id}"></option>
+                </th:block>
+            </select>
+
+            <label for="os" class="form-label">Operating system</label>
+            <select  class="form-select" aria-label="OS" id="os" name="os">
+                <option th:utext="|*{os.name} - *{os.developer}|" th:value="*{os.id}"></option>
+                <th:block th:each="osi: ${os}">
+                    <option th:utext="|${osi.name} - ${osi.developer}|" th:value="${osi.id}"></option>
+                </th:block>
+            </select>
+
+            <label for="size" class="form-label">Size</label>
+            <input type="number" class="form-control" id="size" th:field="*{size}">
+        </div>
+        <label class="form-label">Color</label>
+
+        <div class="container mb-3">
+            <input type="radio" name="color" id="red" value="#DB2828"/>
+            <label for="red" class="color"><span class="red"></span></label>
+
+            <input type="radio" name="color" id="yellow" value="#FBBD08"/>
+            <label for="yellow" class="color"><span class="yellow"></span></label>
+
+            <input type="radio" name="color" id="green" value="#21BA45"/>
+            <label for="green" class="color"><span class="green"></span></label>
+
+            <input type="radio" name="color" id="blue" value="#2185D0"/>
+            <label for="blue" class="color"><span class="blue"></span></label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update smartphone</button>
+        <button type="reset" class="btn btn-secondary" value="Reset">Reset</button>
+    </form>
+</div>
+<script th:inline="javascript">
+    var color = [[${smart.color}]];
+
+    //console.log(color);
+    var $radios = $('input:radio[name=color]');
+    if($radios.is
+    (':checked') === false)
+    $radios.filter(`[value="${color}"]`).prop('checked', true);
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-5">
+    <form method="post" th:action="@{/os_add}" th:object = "${os}">
+        <div class="mb-3">
+            <label for="name" class="form-label">Firm</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}">
+            <label for="developer" class="form-label">Developer</label>
+            <input type="text" class="form-control" id="developer" th:field="*{developer}">
+        </div>
+        <button type="submit" class="btn btn-primary">Add firm</button>
+        <button type="reset" class="btn btn-secondary" value="Reset">Reset</button>
+    </form>
+</div>
+</body>
+</html>
