@@ -5,15 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smartphone</title>
-    <link rel="stylesheet"  th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet"  th:href="@{/css/style.css}">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
 <div class="container mt-5">
     <h3>Edit smartphone</h3>
-    <form th:method="PUT" th:action="@{/smart_update}" th:object = "${smart}">
+    <form th:method="PUT" th:action="@{/smart_update}" th:object="${smart}">
         <div class="mb-3">
             <input type="text" id="id" th:field="*{id}" hidden>
             <label for="name" class="form-label">Name</label>
@@ -28,7 +29,7 @@
             </select>
 
             <label for="os" class="form-label">Operating system</label>
-            <select  class="form-select" aria-label="OS" id="os" name="os">
+            <select class="form-select" aria-label="OS" id="os" name="os">
                 <option th:utext="|*{os.name} - *{os.developer}|" th:value="*{os.id}"></option>
                 <th:block th:each="osi: ${os}">
                     <option th:utext="|${osi.name} - ${osi.developer}|" th:value="${osi.id}"></option>
@@ -63,9 +64,9 @@
 
     //console.log(color);
     var $radios = $('input:radio[name=color]');
-    if($radios.is
+    if ($radios.is
     (':checked') === false)
-    $radios.filter(`[value="${color}"]`).prop('checked', true);
+        $radios.filter(`[value="${color}"]`).prop('checked', true);
 </script>
 </body>
 </html>

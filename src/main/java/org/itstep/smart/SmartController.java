@@ -60,17 +60,17 @@ public class SmartController {
         return "redirect:/smarts";
     }
 
-    @GetMapping(value ="/smart_update")
-    public String editSmart(Model model, @RequestParam(name="id")Long id) {
+    @GetMapping(value = "/smart_update")
+    public String editSmart(Model model, @RequestParam(name = "id") Long id) {
         Smart smartphone = smartService.findById(id);
-        model.addAttribute("smart",smartphone);
-        model.addAttribute("os",osService.findAll());
-        model.addAttribute("firms",firmService.findAll());
+        model.addAttribute("smart", smartphone);
+        model.addAttribute("os", osService.findAll());
+        model.addAttribute("firms", firmService.findAll());
         return "smart_update";
     }
 
     //PutMapping
-    @PostMapping(value="/smart_update")
+    @PostMapping(value = "/smart_update")
     public String updateSmart(Smart smartphone, Model model) {
         Smart smartphoneDb = smartService.findById(smartphone.getId());
 
